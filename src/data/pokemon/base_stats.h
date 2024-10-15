@@ -1,8 +1,8 @@
 #ifndef GUARD_BASE_STATS_H
 #define GUARD_BASE_STATS_H
 
-// Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.
-// 255 (MON_GENDERLESS) is reserved for genderless Pokémon.
+// Maximum value for a female Pokï¿½mon is 254 (MON_FEMALE) which is 100% female.
+// 255 (MON_GENDERLESS) is reserved for genderless Pokï¿½mon.
 #define PERCENT_FEMALE(percent) min(254, ((percent * 255) / 100))
 #define OLD_UNOWN_BASE_STATS                \
     {                                       \
@@ -8682,7 +8682,7 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_DARK,
         .type2 = TYPE_DARK,
         .catchRate = 255,
-        .expYield = 55,
+        .expYield = 119,
         .evYield_HP        = 0,
         .evYield_Attack    = 1,
         .evYield_Defense   = 0,
@@ -8748,7 +8748,7 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_NORMAL,
         .catchRate = 255,
-        .expYield = 60,
+        .expYield = 104,
         .evYield_HP        = 0,
         .evYield_Attack    = 0,
         .evYield_Defense   = 0,
@@ -9273,7 +9273,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 85,
         .baseSpAttack  = 30,
         .baseSpDefense = 30,
-        .type1 = TYPE_NORMAL,
+        .type1 = TYPE_FLYING,
         .type2 = TYPE_FLYING,
         .catchRate = 200,
         .expYield = 59,
@@ -9342,7 +9342,7 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_GRASS,
         .type2 = TYPE_GRASS,
         .catchRate = 255,
-        .expYield = 65,
+        .expYield = 92,
         .evYield_HP        = 1,
         .evYield_Attack    = 0,
         .evYield_Defense   = 0,
@@ -9474,7 +9474,7 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_WATER,
         .type2 = TYPE_FLYING,
         .catchRate = 45,
-        .expYield = 164,
+        .expYield = 93,
         .evYield_HP        = 0,
         .evYield_Attack    = 0,
         .evYield_Defense   = 2,
@@ -9573,7 +9573,7 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_WATER,
         .type2 = TYPE_WATER,
         .catchRate = 125,
-        .expYield = 137,
+        .expYield = 195,
         .evYield_HP        = 1,
         .evYield_Attack    = 0,
         .evYield_Defense   = 0,
@@ -10182,7 +10182,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_WATER_2,
         .eggGroup2 = EGG_GROUP_WATER_2,
-        .ability1 = ABILITY_ROUGH_SKIN,
+        .ability1 = ABILITY_NONE,
         .ability2 = ABILITY_NONE,
         .safariZoneFleeRate = 0,
         .bodyColor = BODY_COLOR_BLUE,
@@ -10794,7 +10794,7 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_NORMAL,
         .catchRate = 150,
-        .expYield = 33,
+        .expYield = 30,
         .evYield_HP        = 1,
         .evYield_Attack    = 0,
         .evYield_Defense   = 0,
@@ -11124,7 +11124,7 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_PSYCHIC,
         .type2 = TYPE_PSYCHIC,
         .catchRate = 125,
-        .expYield = 44,
+        .expYield = 131,
         .evYield_HP        = 1,
         .evYield_Attack    = 0,
         .evYield_Defense   = 0,
@@ -11157,7 +11157,7 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_GHOST,
         .type2 = TYPE_GHOST,
         .catchRate = 190,
-        .expYield = 97,
+        .expYield = 93,
         .evYield_HP        = 0,
         .evYield_Attack    = 0,
         .evYield_Defense   = 1,
@@ -11982,7 +11982,7 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_BUG,
         .type2 = TYPE_BUG,
         .catchRate = 150,
-        .expYield = 146,
+        .expYield = 101,
         .evYield_HP        = 0,
         .evYield_Attack    = 0,
         .evYield_Defense   = 0,

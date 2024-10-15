@@ -152,20 +152,12 @@ static const struct MenuAction gUnknown_081E79B0[] =
 
 static const struct MenuAction gMalePresetNames[] =
 {
-    {gBirchText_NewName, NULL},
     {gDefaultBoyName1, NULL},
-    {gDefaultBoyName2, NULL},
-    {gDefaultBoyName3, NULL},
-    {gDefaultBoyName4, NULL},
 };
 
 static const struct MenuAction gFemalePresetNames[] =
 {
-    {gBirchText_NewName, NULL},
     {gDefaultGirlName1, NULL},
-    {gDefaultGirlName2, NULL},
-    {gDefaultGirlName3, NULL},
-    {gDefaultGirlName4, NULL},
 };
 
 static void CB2_MainMenu(void)
@@ -343,7 +335,7 @@ void Task_MainMenuCheckRtc(u8 taskId)
         REG_BLDALPHA = 0;
         REG_BLDY = 7;
 
-        if (!(RtcGetErrorStatus() & RTC_ERR_FLAG_MASK))
+        if (1)
         {
             gTasks[taskId].func = Task_MainMenuDraw;
         }
@@ -372,64 +364,16 @@ void Task_MainMenuWaitForRtcErrorAck(u8 taskId)
 
 void Task_MainMenuDraw(u8 taskId)
 {
-    u16 palette;
-
-    if (!gPaletteFade.active)
+    switch (gTasks[taskId].tMenuLayout)
     {
-        REG_WIN0H = 0;
-        REG_WIN0V = 0;
-        REG_WININ = 0x1111;
-        REG_WINOUT = 49;
-        REG_BLDCNT = 241;
-        REG_BLDALPHA = 0;
-        REG_BLDY = 7;
-
-        palette = RGB(0, 0, 0);
-        LoadPalette(&palette, 254, 2);
-
-        if (gSaveBlock2.playerGender == MALE)
-        {
-            palette = RGB(4, 16, 31);
-            LoadPalette(&palette, 241, 2);
-        }
-        else
-        {
-            palette = RGB(31, 3, 21);
-            LoadPalette(&palette, 241, 2);
-        }
-
-        switch (gTasks[taskId].tMenuLayout)
-        {
         case HAS_NO_SAVED_GAME:
         default:
-            Menu_DrawStdWindowFrame(1, 0, 28, 3);
-            PrintMainMenuItem(gMainMenuString_NewGame, 2, 1);
-            Menu_DrawStdWindowFrame(1, 4, 28, 7);
-            PrintMainMenuItem(gMainMenuString_Option, 2, 5);
+                gTasks[taskId].func = Task_NewGameSpeech1;
             break;
         case HAS_SAVED_GAME:
-            Menu_DrawStdWindowFrame(1, 0, 28, 7);
-            PrintMainMenuItem(gMainMenuString_Continue, 2, 1);
-            Menu_DrawStdWindowFrame(1, 8, 28, 11);
-            PrintMainMenuItem(gMainMenuString_NewGame, 2, 9);
-            Menu_DrawStdWindowFrame(1, 12, 28, 15);
-            PrintMainMenuItem(gMainMenuString_Option, 2, 13);
-            PrintSaveFileInfo();
+            SetMainCallback2(CB2_ContinueSavedGame);
+            DestroyTask(taskId);
             break;
-        case HAS_MYSTERY_EVENT:
-            Menu_DrawStdWindowFrame(1, 0, 28, 7);
-            PrintMainMenuItem(gMainMenuString_Continue, 2, 1);
-            Menu_DrawStdWindowFrame(1, 8, 28, 11);
-            PrintMainMenuItem(gMainMenuString_NewGame, 2, 9);
-            Menu_DrawStdWindowFrame(1, 12, 28, 15);
-            PrintMainMenuItem(gMainMenuString_MysteryEvents, 2, 13);
-            Menu_DrawStdWindowFrame(1, 16, 28, 19);
-            PrintMainMenuItem(gMainMenuString_Option, 2, 0x11);
-            PrintSaveFileInfo();
-            break;
-        }
-
-        gTasks[taskId].func = Task_MainMenuHighlight;
     }
 }
 
@@ -740,8 +684,8 @@ void PrintBadgeCount(void)
 
 static void Task_NewGameSpeech1(u8 taskId)
 {
-    Text_LoadWindowTemplate(&gWindowTemplate_81E6C3C);
-    InitMenuWindow((struct WindowTemplate *)&gMenuTextWindowTemplate);
+    // Text_LoadWindowTemplate(&gWindowTemplate_81E6C3C);
+    // InitMenuWindow((struct WindowTemplate *)&gMenuTextWindowTemplate);
     REG_WIN0H = 0;
     REG_WIN0V = 0;
     REG_WININ = 0;
@@ -749,24 +693,27 @@ static void Task_NewGameSpeech1(u8 taskId)
     REG_BLDCNT = 0;
     REG_BLDALPHA = 0;
     REG_BLDY = 0;
-    LZ77UnCompVram(gBirchIntroShadowGfx, (void *)BG_VRAM);
-    LZ77UnCompVram(gUnknown_081E7834, (void *)(BG_VRAM + 0x3800));
-    LoadPalette(gUnknown_081E764C, 0, 0x40);
-    LoadPalette(gUnknown_081E795C + 8, 1, 0x10);
+
+    if (Random() & 1) {
+        gSaveBlock2.playerGender = MALE;
+        SetPresetPlayerName(0);
+    }
+    else {
+        gSaveBlock2.playerGender = FEMALE;
+        SetPresetPlayerName(0);
+    }
+    
+
     ScanlineEffect_Stop();
     ResetSpriteData();
     FreeAllSpritePalettes();
-    AddBirchSpeechObjects(taskId);
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB(0, 0, 0));
     REG_BG1CNT = BGCNT_PRIORITY(3) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(7) | BGCNT_16COLOR | BGCNT_TXT256x256;
     REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP;
     gTasks[taskId].tBGhofs = 0;
-    gTasks[taskId].func = Task_NewGameSpeech2;
+    gTasks[taskId].func = Task_NewGameSpeech32;
     gTasks[taskId].tTrainerSpriteId = 0xFF;
     gTasks[taskId].data[3] = 0xFF;
-    gTasks[taskId].tFrameCounter = 216;  //Wait 3.6 seconds (216 frames) before starting speech
-
-    PlayBGM(MUS_ROUTE122);
+    gTasks[taskId].tFrameCounter = 0;
 }
 
 static void Task_NewGameSpeech2(u8 taskId)

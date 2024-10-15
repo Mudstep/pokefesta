@@ -10,7 +10,7 @@ void SetDefaultOptions(void);
 void ClearPokedexFlags(void);
 void ResetContestAndMuseumWinners(void);
 void sub_8052DE4(void);
-void WarpToTruck(void);
+void WarpToFesta(void);
 void ClearSav2(void);
 void sub_8052E4C(void);
 void NewGameInitData(void);

@@ -12,6 +12,8 @@
 #include "easy_chat.h"
 #include "event_data.h"
 #include "field_specials.h"
+#include "item.h"
+#include "constants/items.h"
 #include "item_menu.h"
 #include "lottery_corner.h"
 #include "mail_data.h"
@@ -134,9 +136,9 @@ void debug_sub_8052E04()
 }
 #endif
 
-void WarpToTruck(void)
+void WarpToFesta(void)
 {
-    Overworld_SetWarpDestination(MAP_GROUP(INSIDE_OF_TRUCK), MAP_NUM(INSIDE_OF_TRUCK), -1, -1, -1);
+    Overworld_SetWarpDestination(MAP_GROUP(ROUTE104_PROTOTYPE), MAP_NUM(ROUTE104_PROTOTYPE), WARP_ID_NONE, 17, 35);
     WarpIntoMap();
 }
 
@@ -179,7 +181,7 @@ void NewGameInitData(void)
     ResetGabbyAndTy();
     ResetSecretBases();
     ClearBerryTrees();
-    gSaveBlock1.money = 3000;
+    gSaveBlock1.money = 1000; // modified for festa
     ResetLinkContestBoolean();
     ResetGameStats();
     ResetContestAndMuseumWinners();
@@ -201,7 +203,17 @@ void NewGameInitData(void)
     InitDewfordTrend();
     ResetFanClub();
     ResetLotteryCorner();
-    WarpToTruck();
+    // festa
+    WarpToFesta();
+    FlagSet(FLAG_SYS_POKEMON_GET);
+    // FlagSet(FLAG_SYS_B_DASH);
+    AddBagItem(ITEM_POTION, 20);
+    AddBagItem(ITEM_ETHER, 10);
+    AddBagItem(ITEM_REVIVE, 5);
+    // gender, IVs and alike seem to be set randomly;
+    ScriptGiveMon(SPECIES_SHARPEDO, 12, 0, 0, 0, 0); //Sharpedo, Lv. 12, Bite/Leer/Surf, no Ability, Met at Lv. 12 in Event;
+    ScriptGiveMon(SPECIES_KECLEON, 14, 0, 0, 0, 0); //Sharpedo, Lv. 12, Bite/Leer/Surf, no Ability, Met at Lv. 12 in Event;
+    // remove optios
     ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
 }
 

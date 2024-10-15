@@ -6535,12 +6535,12 @@ const struct TrainerMonNoItemDefaultMoves gTrainerParty_AmyAndLiv3[] = {
     {
 	.iv = 0,
 	.level = 9,
-	.species = SPECIES_PLUSLE
+	.species = SPECIES_AZURILL
     },
     {
 	.iv = 0,
 	.level = 9,
-	.species = SPECIES_MINUN
+	.species = SPECIES_VOLBEAT
     }
 };
 

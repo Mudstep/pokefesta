@@ -53,20 +53,12 @@ const u8 gBirchText_Boy[] = _("BOY");
 const u8 gBirchText_Girl[] = _("GIRL");
 const u8 gBirchText_NewName[] = _("NEW NAME");
 
-#ifdef SAPPHIRE
-const u8 gDefaultBoyName1[] = _("SEAN");
-#else
-const u8 gDefaultBoyName1[] = _("LANDON");
-#endif
+const u8 gDefaultBoyName1[] = _("HIRO");
 const u8 gDefaultBoyName2[] = _("TERRY");
 const u8 gDefaultBoyName3[] = _("SETH");
 const u8 gDefaultBoyName4[] = _("TOM");
 
-#ifdef SAPPHIRE
-const u8 gDefaultGirlName1[] = _("MARINA");
-#else
-const u8 gDefaultGirlName1[] = _("TERRA");
-#endif
+const u8 gDefaultGirlName1[] = _("AKI");
 const u8 gDefaultGirlName2[] = _("KIMMY");
 const u8 gDefaultGirlName3[] = _("NICOLA");
 const u8 gDefaultGirlName4[] = _("SARA");
