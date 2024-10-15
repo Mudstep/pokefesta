@@ -1116,7 +1116,7 @@ u16 GetMUS_ForBattle(void)
     if (gBattleTypeFlags & BATTLE_TYPE_REGI)
         return MUS_VS_REGI;
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        return MUS_VS_TRAINER;
+        return MUS_VS_WILD;
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         switch (gTrainers[gTrainerBattleOpponent].trainerClass)
@@ -1135,12 +1135,12 @@ u16 GetMUS_ForBattle(void)
             return MUS_VS_CHAMPION;
         case 0x2E:
             if (!StringCompare(gTrainers[gTrainerBattleOpponent].trainerName, BattleText_Wally))
-                return MUS_VS_TRAINER;
+                return MUS_VS_WILD;
             return MUS_VS_RIVAL;
         case 0x18:
             return MUS_VS_ELITE_FOUR;
         default:
-            return MUS_VS_TRAINER;
+            return MUS_VS_WILD;
         }
     }
     return MUS_VS_WILD;

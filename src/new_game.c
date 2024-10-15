@@ -181,7 +181,7 @@ void NewGameInitData(void)
     ResetGabbyAndTy();
     ResetSecretBases();
     ClearBerryTrees();
-    gSaveBlock1.money = 1000; // modified for festa
+    gSaveBlock1.money = 10000; // modified for festa
     ResetLinkContestBoolean();
     ResetGameStats();
     ResetContestAndMuseumWinners();

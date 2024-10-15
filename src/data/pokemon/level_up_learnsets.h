@@ -4153,9 +4153,9 @@ const u16 gDelcattyLevelUpLearnset[] = {
 };
 
 const u16 gKecleonLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_LICK),
     LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
-    LEVEL_UP_MOVE( 7, MOVE_FAINT_ATTACK),
+    LEVEL_UP_MOVE( 1, MOVE_FAINT_ATTACK),
+    LEVEL_UP_MOVE( 1, MOVE_LICK),
     LEVEL_UP_END
 };
 
@@ -4356,8 +4356,8 @@ const u16 gCarvanhaLevelUpLearnset[] = {
 };
 
 const u16 gSharpedoLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 1, MOVE_BITE),
+    LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 1, MOVE_SURF),
     LEVEL_UP_END
 };
