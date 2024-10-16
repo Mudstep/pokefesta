@@ -14,6 +14,7 @@
 #include "siirtc.h"
 #include "sound.h"
 #include "scanline_effect.h"
+#include "title_screen.h"
 
 extern struct SoundInfo gSoundInfo;
 extern u32 IntrMain[];
@@ -180,7 +181,7 @@ static void InitMainCallbacks(void)
     gMain.vblankCounter1 = 0;
     gMain.vblankCounter2 = 0;
     gMain.callback1 = NULL;
-    SetMainCallback2(CB2_InitCopyrightScreenAfterBootup);
+    SetMainCallback2(CB2_InitTitleScreen);
 }
 
 static void CallCallbacks(void)

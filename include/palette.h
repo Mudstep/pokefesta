@@ -7,6 +7,7 @@
 #define gPaletteFade_submode          (gPaletteFade.multipurpose2) // fast fade
 
 #define FADE_COLOR_WHITE (RGB(31, 31, 31) | 0x8000)
+#define FADE_COLOR_BLACK (RGB(0, 0, 0) | 0x8000)
 
 #define PALETTES_BG      0x0000FFFF
 #define PALETTES_OBJECTS 0xFFFF0000

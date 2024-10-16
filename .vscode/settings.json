@@ -4,6 +4,8 @@
         "field_player_avatar.h": "c",
         "berry_tag_screen.h": "c",
         "decompress.h": "c",
-        "field_effect.h": "c"
+        "field_effect.h": "c",
+        "m4a_internal.h": "c",
+        "battle_records.h": "c"
     }
 }

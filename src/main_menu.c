@@ -211,18 +211,13 @@ u32 InitMainMenu(u8 a1)
     DmaFill16(3, 0, (void *)(PLTT + 2), PLTT_SIZE - 2);
 
     ResetPaletteFade();
-    LoadPalette(gMainMenuPalette, 0, 32);
+    // LoadPalette(gMainMenuPalette, 0, 32);
     ScanlineEffect_Stop();
     ResetTasks();
     ResetSpriteData();
     FreeAllSpritePalettes();
-    Text_LoadWindowTemplate(&gWindowTemplate_81E6C3C);
-    InitMenuWindow((struct WindowTemplate *)&gMenuTextWindowTemplate);
-
-    if (a1)
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB(0, 0, 0));
-    else
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, FADE_COLOR_WHITE);
+    // Text_LoadWindowTemplate(&gWindowTemplate_81E6C3C);
+    // InitMenuWindow((struct WindowTemplate *)&gMenuTextWindowTemplate);
 
     REG_WIN0H = 0;
     REG_WIN0V = 0;
@@ -246,7 +241,7 @@ u32 InitMainMenu(u8 a1)
                 | DISPCNT_OBJ_ON
                 | DISPCNT_WIN0_ON;
 
-    taskId = CreateTask(Task_MainMenuCheckSave, 0);
+    taskId = CreateTask(Task_NewGameSpeech1, 0);
     gTasks[taskId].tMenuSelection = 0;
 
     return 0;
@@ -1247,24 +1242,18 @@ static void Task_NewGameSpeech31(u8 taskId)
 
 static void Task_NewGameSpeech32(u8 taskId)
 {
-    if (!gPaletteFade.active)
-    {
-        u8 spriteId = gTasks[taskId].tTrainerSpriteId;
-        gSprites[spriteId].callback = nullsub_34;
-        REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON;
-        BeginNormalPaletteFade(0xFFFF0000, 0, 0, 16, FADE_COLOR_WHITE);
-        gTasks[taskId].func = Task_NewGameSpeech33;
-    }
+    u8 spriteId = gTasks[taskId].tTrainerSpriteId;
+    gSprites[spriteId].callback = nullsub_34;
+    REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON;
+    BeginNormalPaletteFade(0xFFFF0000, 0, 0, 16, FADE_COLOR_WHITE);
+    gTasks[taskId].func = Task_NewGameSpeech33;
 }
 
 static void Task_NewGameSpeech33(u8 taskId)
 {
-    if (!gPaletteFade.active)
-    {
-        //We're finished setting up. Start the new game!
-        SetMainCallback2(CB2_NewGame);
-        DestroyTask(taskId);
-    }
+    //We're finished setting up. Start the new game!
+    SetMainCallback2(CB2_NewGame);
+    DestroyTask(taskId);
 }
 
 // Re-initializes graphics state after running the naming screen
