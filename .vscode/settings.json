@@ -6,6 +6,7 @@
         "decompress.h": "c",
         "field_effect.h": "c",
         "m4a_internal.h": "c",
-        "battle_records.h": "c"
+        "battle_records.h": "c",
+        "clear_save_data_menu.h": "c"
     }
 }

@@ -3729,7 +3729,7 @@ u8 SummaryScreen_CreatePokemonSprite(struct Pokemon *mon)
     gSprites[spriteId].callback = SummaryScreen_SpritePlayCry;
 
     if (!IsPokeSpriteNotFlipped(species))
-        gSprites[spriteId].hFlip = TRUE;
+        gSprites[spriteId].hFlip = FALSE;
     else
         gSprites[spriteId].hFlip = FALSE;
 

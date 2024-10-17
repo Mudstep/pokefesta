@@ -908,8 +908,7 @@ static u8 SetUpCopyrightScreen(void)
     case 141:
         if (UpdatePaletteFade())
             break;
-        CreateTask(Task_IntroLoadPart1Graphics, 0);
-        SetMainCallback2(MainCB2_Intro);
+        SetMainCallback2(CB2_InitTitleScreen);
         if (gMultibootProgramStruct.gcmb_field_2)
         {
             GameCubeMultiBoot_ExecuteProgram(&gMultibootProgramStruct);

@@ -722,7 +722,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
     if ((gMain.newKeys & A_BUTTON) || (gMain.newKeys & START_BUTTON))
     {
         FadeOutBGM(4);
-        BeginNormalPaletteFade(0xFFFF0000, 0, 0, 16, FADE_COLOR_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB(0, 0, 0));
         SetMainCallback2(CB2_GoToMainMenu);
     }
     else
@@ -757,7 +757,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
             if ((gMPlayInfo_BGM.status & 0xFFFF) == 0)
             {
                 BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, FADE_COLOR_WHITE);
-                SetMainCallback2(CB2_InitTitleScreen);
+                SetMainCallback2(CB2_GoToCopyrightScreen);
             }
         }
     }
@@ -811,4 +811,3 @@ static void UpdateLegendaryMarkingColor(u8 frameNum)
         LoadPalette(&palette, 0xEF, sizeof(palette));
    }
 }
-
